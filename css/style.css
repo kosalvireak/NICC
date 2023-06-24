@@ -246,6 +246,25 @@
 }
 
 
+/*** Startup ***/
+.startup-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .5s;
+    cursor: pointer;
+}
+
+.startup-item * {
+    transition: .5s;
+}
+
+.badge {
+    border: 1px solid darkgray;
+    color: darkgray;
+    font-weight: 300;
+    margin: 4px;
+}
+
+
 /*** Destination ***/
 .destination img {
     transition: .5s;
