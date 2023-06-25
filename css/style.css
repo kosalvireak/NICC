@@ -1,12 +1,30 @@
 /********** Template CSS **********/
 :root {
-    --primary: #86B817;
+    /* --primary: #86B817; */
+    --primary: #FE8800;
     --secondary: #FE8800;
     --light: #F5F5F5;
     --dark: #14141F;
+    --grey: #808b8d;
 }
 
+.h-2 {
+    height: 28rem !important;
+}
 
+.fit-cont-hei {
+    height: fit-content !important;
+    width: auto;
+}
+
+.p-m-0 {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.ml-1 {
+    margin-left: 1rem;
+}
 
 .fw-medium {
     font-weight: 600 !important;
@@ -262,6 +280,23 @@
     color: darkgray;
     font-weight: 300;
     margin: 4px;
+    cursor: pointer;
+}
+
+
+/*** Startup Detail ***/
+.startup-detail-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .5s;
+}
+
+.startup-detail-item:hover {
+    background: var(--grey);
+}
+
+
+.startup-detail-item:hover * {
+    color: var(--light) !important;
 }
 
 
