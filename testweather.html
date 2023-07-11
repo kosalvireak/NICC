@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Weather App</title>
+        <script type="text/javascript">
+            function getWeather() {
+                var cityName = document.getElementById("cityName").value;
+                var apiKey = "c756f889d0f701e35fef6a413a638e1e"; // Replace with your OpenWeatherMap API key
+                console.log(cityName, apiKey);
+
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`)
+                    .then(response => response.json())
+                    .then(weatherData => {
+                        // Process the weather data here
+                        console.log(weatherData);
+                        const weatherContainer = document.getElementById("weatherContainer");
+
+                        function createCard(title, value) {
+                            const card = document.createElement("div");
+                            card.className = "card";
+
+                            const titleElement = document.createElement("h2");
+                            titleElement.textContent = title;
+                            card.appendChild(titleElement);
+
+                            const valueElement = document.createElement("p");
+                            valueElement.textContent = value;
+                            card.appendChild(valueElement);
+
+                            return card;
+                        }
+
+                        function displayWeatherData(data) {
+                            for (const key in data) {
+                                if (typeof data[key] === "object") {
+                                    for (const subKey in data[key]) {
+                                        const card = createCard(subKey, data[key][subKey]);
+                                        weatherContainer.appendChild(card);
+                                    }
+                                } else {
+                                    const card = createCard(key, data[key]);
+                                    weatherContainer.appendChild(card);
+                                }
+                            }
+                        }
+
+                        displayWeatherData(weatherData);
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            }
+        </script>
+        <style>
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .card {
+                width: 300px;
+                padding: 20px;
+                margin: 10px;
+                background-color: #f2f2f2;
+                border-radius: 5px;
+            }
+
+            .card h2 {
+                color: #333333;
+            }
+
+            .card p {
+                color: #666666;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Weather App</h1>
+        <form>
+            <input type="text" id="cityName" placeholder="Enter city name">
+            <button type="button" onclick="getWeather()">Get Weather</button>
+        </form>
+        <div class="container" id="weatherContainer"></div>
+    </body>
+
+</html>
